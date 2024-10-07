@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use  App\Models\Book;
+use App\Models\Book;
 
 class BookController extends Controller
 {
     //create Book
     public function createBook(Request $request){
+        $validateBook = $request->validate([
+            'judul' => 'required',
+            'penerbit' => 'required'
+        ]);
+
         $book = new Book;
-        $book->judul = $request->judul;
-        $book->penerbit = $request->penerbit;
-        $book->save();
-        return redirect('/buku');
+        $book->judul = $validateBook['judul'];
+        $book->penerbit = $validateBook['penerbit'];
+
+        $su = $book->save();
+
+        if($su){
+            return redirect('/buku')->with('success', 'Data Berhasil Ditambahkan');
+        }
     }
 
     //get all Book
@@ -25,8 +34,13 @@ class BookController extends Controller
     //update Book
     public function updateBook(Request $request, $id){
         $book = Book::find($id);
-        $book->judul = $request->judul;
-        $book->penerbit = $request->penerbit;
+        $validateBook = $request->validate([
+            'judul' => 'required',
+            'penerbit' => 'required'
+        ]);
+
+        $book->judul = $validateBook['judul'];
+        $book->penerbit = $validateBook['penerbit'];
         $su = $book->save();
         if($su){
             return redirect('/buku');
@@ -36,10 +50,9 @@ class BookController extends Controller
     //delete Book
     public function deleteBook($id){
         $book = Book::find($id);
-        $su =  $book->delete();
+        $su = $book->delete();
         if($su){
             return redirect('/buku');
         }
     }
-
 }
