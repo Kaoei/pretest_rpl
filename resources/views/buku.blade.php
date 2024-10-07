@@ -51,35 +51,7 @@
                     </td>
                 </tr>
 
-                   {{-- ModalEdit --}}
-                <div id="modalEdit" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex justify-center items-center">
-                    <div class="modal-content bg-white rounded-lg shadow-lg p-6 w-1/3">
-                        <div class="flex justify-between items-center">
-                            <h2 class="text-2xl text-center font-bold text-blue-400">Edit Buku</h2>
-                            <span id="closeModalEdit" class="cursor-pointer text-gray-500 hover:text-gray-700 text-2xl">&times;</span>
-                        </div>
-                        <div class="modal-body mt-4">
-                            <form id="editForm" action="/buku/update/{{$a->id}}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="id" id="editId">
-                                <div class="mb-4">
-                                    <label for="editJudul" class="block text-sm font-medium text-gray-700">Judul Buku</label>
-                                    <input type="text" name="judul" id="editJudul"
-                                        class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                </div>
-                                <div class="mb-4">
-                                    <label for="editPenerbit" class="block text-sm font-medium text-gray-700">Penerbit</label>
-                                    <input type="text" name="penerbit" id="editPenerbit"
-                                        class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                </div>
-                                <div class="mb-4">
-                                    <button type="submit"
-                                        class="text-white bg-blue-400 p-2 rounded-md hover:bg-blue-500 transition duration-300">Update</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div
+               
                 @endforeach
             </tbody>
         </table>
@@ -114,7 +86,35 @@
         </div>
     </div>
 
- >
+        {{-- ModalEdit --}}
+        <div id="modalEdit" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex justify-center items-center">
+            <div class="modal-content bg-white rounded-lg shadow-lg p-6 w-1/3">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl text-center font-bold text-blue-400">Edit Buku</h2>
+                    <span id="closeModalEdit" class="cursor-pointer text-gray-500 hover:text-gray-700 text-2xl">&times;</span>
+                </div>
+                <div class="modal-body mt-4">
+                    <form id="editForm" action="/buku/update/{{$a->id}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="id" id="editId">
+                        <div class="mb-4">
+                            <label for="editJudul" class="block text-sm font-medium text-gray-700">Judul Buku</label>
+                            <input type="text" name="judul" id="editJudul"
+                                class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div class="mb-4">
+                            <label for="editPenerbit" class="block text-sm font-medium text-gray-700">Penerbit</label>
+                            <input type="text" name="penerbit" id="editPenerbit"
+                                class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div class="mb-4">
+                            <button type="submit"
+                                class="text-white bg-blue-400 p-2 rounded-md hover:bg-blue-500 transition duration-300">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
     </div>
 
     <script>
